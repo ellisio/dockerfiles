@@ -1,4 +1,4 @@
-FROM php:7.1.0-alpine
+FROM php:7.0.14-alpine
 MAINTAINER Andrew Ellis <awellis89@gmail.com>
 
 RUN apk --update add --virtual build-dependencies \
