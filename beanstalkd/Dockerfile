@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 MAINTAINER Andrew Ellis <awellis89@gmail.com>
 
 ENV VERSION="1.10"

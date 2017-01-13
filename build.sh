@@ -8,14 +8,14 @@ then
 fi
 
 declare -a IMAGES=(
-  "baseimage:3.4"
+  "baseimage:3.5"
   "php:7.0.14"
   "php-fpm:7.0.14"
   "artisan-queue:7.0.14"
   "artisan-schedule:7.0.14"
   "beanstalkd:1.10"
-  "beanstalkd-console:1.7.6"
-  "nginx:1.11.6"
+  "beanstalkd-console:1.7.4"
+  "nginx:1.11.8"
   "ngrok:2.1.18"
 )
 
