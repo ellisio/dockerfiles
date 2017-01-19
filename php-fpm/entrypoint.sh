@@ -13,4 +13,8 @@ if [ ! -z "$CONFIGURE_KUBERNETES" ]; then
   done
 fi
 
+if [ ! -z "$ENABLE_XDEBUG" ]; then
+  sed -i 's/; //g' /usr/local/etc/php/conf.d/xdebug.ini
+fi
+
 exec "$@"

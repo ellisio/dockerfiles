@@ -31,6 +31,7 @@ RUN apk --update add --virtual build-dependencies \
     && make install \
     && cd ../ \
     && rm -rf phpiredis \
+    && pecl install xdebug \
     && apk del build-dependencies \
     && rm -rf /tmp/* \
     && rm -rf /var/cache/apk/*
@@ -47,5 +48,6 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php-fpm", "-F"]
 
 ADD conf/php.ini /usr/local/etc/php/php.ini
+ADD conf/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 ADD conf/php-fpm.conf /usr/local/etc/php-fpm.conf
 ADD conf/www.conf /usr/local/etc/php-fpm.d/www.conf
