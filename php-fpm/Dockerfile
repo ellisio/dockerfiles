@@ -21,6 +21,7 @@ RUN apk --update add --virtual build-dependencies \
         libxml2-dev \
         libmcrypt-dev \
         postgresql-dev \
+        fcgi \
     && docker-php-ext-install pdo_mysql soap intl imap bcmath zip mcrypt pgsql opcache \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
@@ -46,6 +47,13 @@ WORKDIR /app
 EXPOSE 9000
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php-fpm", "-F"]
+
+HEALTHCHECK --interval=10s --timeout=3s \
+    CMD \
+    SCRIPT_NAME=/ping \
+    SCRIPT_FILENAME=/ping \
+    REQUEST_METHOD=GET \
+    cgi-fcgi -bind -connect 127.0.0.1:9000 || exit 1
 
 ADD conf/php.ini /usr/local/etc/php/php.ini
 ADD conf/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
