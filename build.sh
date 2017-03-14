@@ -9,10 +9,10 @@ fi
 
 declare -a IMAGES=(
   "baseimage:3.5"
-  "php:7.0.16"
-  "php-fpm:7.0.16"
-  "artisan-queue:7.0.16"
-  "artisan-schedule:7.0.16"
+  "php:7.1.2"
+  "php-fpm:7.1.2"
+  "artisan-queue:7.1.2"
+  "artisan-schedule:7.1.2"
   "beanstalkd:1.10"
   "beanstalkd-console:1.7.4"
   "mariadb:10.2.4"
