@@ -38,8 +38,10 @@ RUN apk --update add --virtual build-dependencies \
     && rm -rf /var/cache/apk/*
 
 ADD entrypoint.sh /entrypoint.sh
-ADD readiness.sh /readiness.sh
-ADD liveness.sh /liveness.sh
+ADD conf/php.ini /usr/local/etc/php/php.ini
+ADD conf/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+ADD conf/php-fpm.conf /usr/local/etc/php-fpm.conf
+ADD conf/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 VOLUME /app
 WORKDIR /app
@@ -48,14 +50,9 @@ EXPOSE 9000
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php-fpm", "-F"]
 
-HEALTHCHECK --interval=10s --timeout=3s \
+HEALTHCHECK --interval=5s --timeout=3s \
     CMD \
     SCRIPT_NAME=/ping \
     SCRIPT_FILENAME=/ping \
     REQUEST_METHOD=GET \
     cgi-fcgi -bind -connect 127.0.0.1:9000 || exit 1
-
-ADD conf/php.ini /usr/local/etc/php/php.ini
-ADD conf/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
-ADD conf/php-fpm.conf /usr/local/etc/php-fpm.conf
-ADD conf/www.conf /usr/local/etc/php-fpm.d/www.conf

@@ -16,8 +16,10 @@ declare -a IMAGES=(
   "beanstalkd:1.10"
   "beanstalkd-console:1.7.4"
   "mariadb:10.2.4"
+  "mysql:5.7.14"
   "nginx:1.11.10"
   "ngrok:2.1.18"
+  "redis:3.2.8"
 )
 
 for i in "${!IMAGES[@]}"
