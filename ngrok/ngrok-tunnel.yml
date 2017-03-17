@@ -1,5 +1,5 @@
 tunnels:
   ##SUBDOMAIN##:
     proto: http
-    addr: 80
+    addr: ##ADDR##:80
     subdomain: ##SUBDOMAIN##

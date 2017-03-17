@@ -29,6 +29,7 @@ IFS=','; for TUNNEL in `echo "$NGROK_TUNNELS"`; do
     SUBDOMAIN="$SUBDOMAIN-$TUNNEL"
   fi
 
+  sed -i "s/##ADDR##/$TUNNEL-nginx/g" /ngrok-$TUNNEL.yml
   sed -i "s/##SUBDOMAIN##/$SUBDOMAIN/g" /ngrok-$TUNNEL.yml
 
   ARGS="$ARGS -config /ngrok-$TUNNEL.yml"
