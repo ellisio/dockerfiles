@@ -4,34 +4,36 @@ if [ "$1" = "/bin/sh" ]; then
   shift
 fi
 
-if [ -n "$HTTPS_PORT" ]; then
-  FWD="`echo $HTTPS_PORT | sed 's|^tcp://||'`"
-elif [ -n "$HTTP_PORT" ]; then
-  FWD="`echo $HTTP_PORT | sed 's|^tcp://||'`"
-elif [ -n "$1" ]; then
-  FWD="$1"
-else
-  echo "Must be run with a link aliased to http or https, an environmental variable (HTTP_PORT), or passed as a command."
-  echo "=> Example: docker run --link app:http ellisio/ngrok"
-  echo "=> Example: docker run -e HTTP_PORT 8080 ellisio/ngrok"
-  echo "=> Example: docker run ellisio/ngrok 80"
+if [ -z "$NGROK_SUBDOMAIN" ]; then
+  echo "Missing the NGROK_SUBDOMAIN environment variable."
   exit 1
 fi
 
-case "$1" in
-  -h|help)
-    ARGS=$1
-    ;;
-  *)
-    ARGS="--config /ngrok.yml"
+if [ -z "$NGROK_TUNNELS" ]; then
+  echo "Missing the NGROK_TUNNELS environment variable."
+  exit
+fi
 
-    if [ ! -z "$NGROK_SUBDOMAIN" ]; then
-      ARGS="$ARGS -subdomain=$NGROK_SUBDOMAIN"
-    fi
-
-    ARGS="$ARGS $FWD"
-    ;;
-esac
+if [ -z "$NGROK_TOKEN" ]; then
+  echo "Missing the NGROK_TOKEN environment variable."
+  exit
+fi
 
 sed -i "s/^authtoken:.*/authtoken: $NGROK_TOKEN/g" /ngrok.yml
-exec /bin/ngrok http $ARGS
+ARGS="-config /ngrok.yml"
+
+IFS=','; for TUNNEL in `echo "$NGROK_TUNNELS"`; do
+  cp /ngrok-tunnel.yml /ngrok-$TUNNEL.yml
+
+  SUBDOMAIN=$NGROK_SUBDOMAIN
+
+  if [[ $TUNNEL != 'app' ]]; then
+    SUBDOMAIN="$SUBDOMAIN-$TUNNEL"
+  fi
+
+  sed -i "s/##SUBDOMAIN##/$SUBDOMAIN" /ngrok-$app.yml
+
+  ARGS="$ARGS -config=/ngrok-$app.yml"
+done
+
+exec /bin/ngrok $ARGS

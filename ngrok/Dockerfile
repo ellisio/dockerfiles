@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install unzip && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD ngrok.yml /ngrok.yml
+ADD ngrok-tunnel.yml /ngrok-tunnel.yml
 ADD ngrok_discover.sh /bin/ngrok_discover
 
 EXPOSE 4040

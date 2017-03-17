@@ -1,0 +1,5 @@
+tunnels:
+  ##SUBDOMAIN##:
+    proto: http
+    addr: 80
+    subdomain: ##SUBDOMAIN##
