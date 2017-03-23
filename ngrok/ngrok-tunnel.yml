@@ -3,3 +3,4 @@ tunnels:
     proto: http
     addr: ##ADDR##:80
     subdomain: ##SUBDOMAIN##
+    ##HTTPS_ONLY##

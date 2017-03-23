@@ -32,6 +32,10 @@ IFS=','; for TUNNEL in `echo "$NGROK_TUNNELS"`; do
   sed -i "s/##ADDR##/$TUNNEL-nginx/g" /ngrok-$TUNNEL.yml
   sed -i "s/##SUBDOMAIN##/$SUBDOMAIN/g" /ngrok-$TUNNEL.yml
 
+  if [ ! -z "$HTTPS_ONLY" ]; then
+    sed -i "s/##HTTPS_ONLY##/bind_tls: true/g" /ngrok-$TUNNEL.yml
+  fi
+
   ARGS="$ARGS -config /ngrok-$TUNNEL.yml"
 done
 
