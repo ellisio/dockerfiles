@@ -17,7 +17,7 @@ declare -a IMAGES=(
   "beanstalkd-console:1.7.6"
   # "mariadb:10.2.4"
   "mysql:5.7.14"
-  "nginx:1.11.12"
+  "nginx:1.11.13"
   "ngrok:2.1.18"
   "redis:3.2.8"
 )
