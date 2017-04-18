@@ -1,4 +1,4 @@
-FROM ellisio/php:7.1.3
+FROM ellisio/php:7.1.4
 MAINTAINER Andrew Ellis <awellis89@gmail.com>
 
 ADD crontab /var/spool/cron/crontabs/root
