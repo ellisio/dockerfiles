@@ -1,4 +1,4 @@
-FROM nginx:1.11.13-alpine
+FROM nginx:1.13.0-alpine
 MAINTAINER Andrew Ellis <awellis89@gmail.com>
 
 RUN set -x \
