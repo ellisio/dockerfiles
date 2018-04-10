@@ -15,6 +15,7 @@ declare -a IMAGES=(
   "artisan-schedule:7.1.5"
   "beanstalkd:1.10"
   "beanstalkd-console:1.7.6"
+  "composer:1.6.3"
   # "mariadb:10.2.4"
   "mysql:5.7.14"
   "nginx:1.13.0"
