@@ -16,6 +16,8 @@ declare -a IMAGES=(
   "beanstalkd:1.10"
   "beanstalkd-console:1.7.6"
   "composer:1.6.3"
+  "jenkins-builder:3.19.1"
+  "jenkins-laravel-builder:1.0"
   # "mariadb:10.2.4"
   "mysql:5.7.14"
   "nginx:1.13.0"
