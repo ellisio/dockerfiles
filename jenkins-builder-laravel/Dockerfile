@@ -1,7 +1,7 @@
 FROM ellisio/jenkins-builder:3.19-1
 
 ##
-# Set USER to root so we can install toys.
+# Force Root
 ##
 USER root
 
@@ -32,6 +32,7 @@ RUN set -ex; \
     php7.2-pgsql \
     php7.2-opcache \
     php7.2-gd \
+    php7.2-mbstring \
   ; \
   rm -rf /var/lib/apt/lists/*
 
@@ -40,7 +41,10 @@ RUN set -ex; \
 ##
 RUN set -ex; \
   curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
-  chown -R jenkins:jenkins /home/jenkins/.composer
+  composer global require hirak/prestissimo; \
+  composer global clearcache; \
+  composer global info; \
+  composer --version
 
 ##
 # Install NodeJS
@@ -52,16 +56,6 @@ RUN set -ex; \
   tar -xf node-v${NODEJS_VERSION}-linux-x64.tar.gz --directory /usr/local --strip-components 1; \
   rm -rf node-v${NODEJS_VERSION}-linux-x64.tar.gz; \
   npm i -g yarn; \
-  npm cache clear --force
-
-##
-# Set USER to jenkins again.
-##
-USER jenkins
-
-##
-# Make Composer Faster
-##
-RUN set -ex; \
-  composer global require hirak/prestissimo; \
-  composer clearcache
+  npm cache clear --force; \
+  node --version; \
+  npm --version
