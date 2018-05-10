@@ -46,5 +46,3 @@ do
     docker push ellisio/$NAME:$VERSION
   fi
 done
-
-exit 0
