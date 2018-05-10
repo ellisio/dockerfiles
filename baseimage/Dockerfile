@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.7
 MAINTAINER Andrew Ellis <awellis89@gmail.com>
 
 RUN set -x \

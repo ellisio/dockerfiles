@@ -14,11 +14,13 @@ USER root
 ##
 RUN set -ex; \
   apt-get update; \
-  apt-get install -y --no-install-recommends \
+  apt-get install -y \
     curl \
     jq \
     libapparmor-dev \
     libseccomp-dev \
+    build-essential \
+    libpng-dev \
   ; \
   rm -rf /var/lib/apt/lists/*
 

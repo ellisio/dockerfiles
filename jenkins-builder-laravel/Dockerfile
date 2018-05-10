@@ -21,7 +21,6 @@ RUN set -ex; \
   echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list; \
   apt-get update; \
   apt-get install -y \
-    libpng-dev \
     php7.2 \
     php7.2-curl \
     php7.2-mysql \

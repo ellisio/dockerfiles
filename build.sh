@@ -8,21 +8,20 @@ then
 fi
 
 declare -a IMAGES=(
-  "baseimage:3.5"
-  "php:7.1.5"
-  "php-fpm:7.1.5"
-  "artisan-queue:7.1.5"
-  "artisan-schedule:7.1.5"
+  "baseimage:3.7"
+  "php:7.2.5"
+  "php-fpm:7.2.5"
+  "artisan-queue:7.2.5"
+  "artisan-schedule:7.2.5"
   "beanstalkd:1.10"
   "beanstalkd-console:1.7.6"
   "composer:1.6.3"
   "jenkins-builder:3.19-1"
   "jenkins-builder-laravel:1.0"
-  # "mariadb:10.2.4"
-  "mysql:5.7.14"
-  "nginx:1.13.0"
+  "mysql:5.7.22"
+  "nginx:1.13.12"
   "ngrok:2.1.18"
-  "redis:3.2.8"
+  "redis:3.2.11"
 )
 
 for i in "${!IMAGES[@]}"
