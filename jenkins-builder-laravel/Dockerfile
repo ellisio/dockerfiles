@@ -33,6 +33,7 @@ RUN set -ex; \
     php7.2-opcache \
     php7.2-gd \
     php7.2-mbstring \
+    php7.2-dom \
   ; \
   rm -rf /var/lib/apt/lists/*
 
