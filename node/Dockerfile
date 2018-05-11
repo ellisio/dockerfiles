@@ -7,6 +7,7 @@ RUN set -ex; \
   apt-get install -y \
     curl \
     build-essential \
+    libpng-dev \
   ; \
   rm -rf /var/lib/apt/lists/*
 
