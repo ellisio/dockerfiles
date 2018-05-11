@@ -15,13 +15,14 @@ declare -a IMAGES=(
   "artisan-schedule:7.2.5"
   "beanstalkd:1.10"
   "beanstalkd-console:1.7.6"
-  "composer:1.6.3"
+  "composer:1.6.5"
   "jenkins-builder:3.19-1"
   "jenkins-builder-laravel:1.0"
   "mysql:5.7.22"
   "nginx:1.13.12"
   "ngrok:2.1.18"
   "redis:3.2.11"
+  "node:8.11.1"
 )
 
 for i in "${!IMAGES[@]}"
