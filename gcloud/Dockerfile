@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-ENV CLOUD_SDK_VERSION 200.0.0
+ENV CLOUD_SDK_VERSION 201.0.0
 ENV PATH /google-cloud-sdk/bin:$PATH
 
 RUN set -ex; \

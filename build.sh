@@ -23,7 +23,8 @@ declare -a IMAGES=(
   "ngrok:2.1.18"
   "redis:3.2.11"
   "node:8.11.1-1"
-  "gcloud:200.0.0"
+  "gcloud:201.0.0"
+  "helm:v2.9.1"
 )
 
 for i in "${!IMAGES[@]}"
