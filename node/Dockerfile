@@ -15,6 +15,7 @@ RUN set -ex; \
   curl -sSo node-v${NODEJS_VERSION}-linux-x64.tar.gz https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz; \
   tar -xf node-v${NODEJS_VERSION}-linux-x64.tar.gz --directory /usr/local --strip-components 1; \
   rm -rf node-v${NODEJS_VERSION}-linux-x64.tar.gz; \
+  npm i -g npm@5.7.1; \
   npm i -g yarn; \
   npm cache clear --force; \
   node --version; \
