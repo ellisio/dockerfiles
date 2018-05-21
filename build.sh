@@ -25,6 +25,7 @@ declare -a IMAGES=(
   "node:8.11.1-1"
   "gcloud:201.0.0"
   "helm:v2.9.1"
+  "cc-test-reporter:0.1.4"
 )
 
 for i in "${!IMAGES[@]}"
