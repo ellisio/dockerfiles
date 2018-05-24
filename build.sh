@@ -11,6 +11,7 @@ declare -a IMAGES=(
   "baseimage:3.7"
   "php:7.2.5"
   "php-fpm:7.2.5"
+  "php-xdebug:7.2.5"
   "artisan-queue:7.2.5"
   "artisan-schedule:7.2.5"
   "beanstalkd:1.10"
@@ -23,8 +24,7 @@ declare -a IMAGES=(
   "ngrok:2.1.18"
   "redis:3.2.11"
   "node:8.11.1-1"
-  "gcloud:201.0.0"
-  "helm:v2.9.1"
+  "gcloud:202.0.0"
   "cc-test-reporter:0.1.4"
 )
 
