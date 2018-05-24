@@ -31,6 +31,8 @@ RUN set -ex; \
     mv linux-amd64/helm /usr/local/bin; \
     rm -f /helm-${HELM_VERSION}-linux-amd64.tar.gz; \
     helm init --client-only; \
+    helm repo remove local; \
+    helm repo add sm https://salesmessage-charts.storage.googleapis.com; \
   gcloud --version; \
   kubectl version --client; \
   helm version --client
