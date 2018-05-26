@@ -15,6 +15,7 @@ RUN set -ex; \
     openssh-client \
     git \
     ca-certificates \
+    jq \
   ; \
   curl -LO https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz; \
     tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz; \
@@ -30,9 +31,6 @@ RUN set -ex; \
     tar -xvf helm-${HELM_VERSION}-linux-amd64.tar.gz; \
     mv linux-amd64/helm /usr/local/bin; \
     rm -f /helm-${HELM_VERSION}-linux-amd64.tar.gz; \
-    helm init --client-only; \
-    helm repo remove local; \
-    helm repo add sm https://salesmessage-charts.storage.googleapis.com; \
   gcloud --version; \
   kubectl version --client; \
   helm version --client
