@@ -1,11 +1,4 @@
-#!/usr/bin/env bash
-
-VERSION=`bash --version | head -n1 | awk '{print $4}'`
-if [[ ${VERSION} != 4* ]]
-then
-  echo "Requires Bash 4+. Run \`brew install bash\`. (Installed: $VERSION)" 1>&2
-  exit 1
-fi
+#!/usr/bin/env sh
 
 declare -a IMAGES=(
   "baseimage:3.7"
@@ -20,6 +13,7 @@ declare -a IMAGES=(
   "jenkins-builder:3.19-1"
   "jenkins-builder-laravel:1.0"
   "mysql:5.7.22"
+  "nextjs:10.0.5"
   "nginx:1.13.12"
   "ngrok:2.1.18"
   "redis:3.2.11"
@@ -28,23 +22,27 @@ declare -a IMAGES=(
   "cc-test-reporter:0.1.4"
 )
 
-for i in "${!IMAGES[@]}"
+for IMAGE in "${IMAGES[@]}"
 do
-  IFS=':' read -a IMAGE <<< ${IMAGES[$i]}
+  IFS=':' read -r -a IMAGE <<< "${IMAGE}"
 
   NAME=${IMAGE[0]}
   VERSION=${IMAGE[1]}
 
-  if [[ ! -z ${1+x} && $1 != $NAME ]]
-  then
+  if [[ ! -z "${1+x}" && "$1" != "$NAME" ]]; then
     continue
   fi
 
-  echo "==> Building ${IMAGES[$i]}"
-  docker build -t ellisio/$NAME ./$NAME/
+  echo "==> Building ${NAME}:${VERSION}"
+
+  if [ "${NAME}" == "nextjs" ]; then
+    docker build -t ellisio/$NAME ./$NAME/ --build-arg X_TAG="$VERSION"
+  else
+    docker build -t ellisio/$NAME ./$NAME/
+  fi
   docker tag ellisio/$NAME:latest ellisio/$NAME:$VERSION
 
-  if [[ -z "$2" ]]; then
+  if [[ ! -z "$2" && "$2" == "true" ]]; then
     docker push ellisio/$NAME:latest
     docker push ellisio/$NAME:$VERSION
   fi
